@@ -1,39 +1,40 @@
-use std::collections::HashMap;
 use lazy_static::lazy_static;
+use std::collections::HashMap;
 lazy_static! {
     static ref MAPPINGS: HashMap<&'static str, usize> = HashMap::from([
-                                                         ("zero", 0),
-                                                         ("one", 1),
-                                                         ("two", 2),
-                                                         ("three", 3),
-                                                         ("four", 4),
-                                                         ("five", 5),
-                                                         ("six", 6),
-                                                         ("seven", 7),
-                                                         ("eight", 8),
-                                                         ("nine", 9),
-
-                                                         ("0", 0),
-                                                         ("1", 1),
-                                                         ("2", 2),
-                                                         ("3", 3),
-                                                         ("4", 4),
-                                                         ("5", 5),
-                                                         ("6", 6),
-                                                         ("7", 7),
-                                                         ("8", 8),
-                                                         ("9", 9),
-                                                         ]);
+        ("zero", 0),
+        ("one", 1),
+        ("two", 2),
+        ("three", 3),
+        ("four", 4),
+        ("five", 5),
+        ("six", 6),
+        ("seven", 7),
+        ("eight", 8),
+        ("nine", 9),
+        ("0", 0),
+        ("1", 1),
+        ("2", 2),
+        ("3", 3),
+        ("4", 4),
+        ("5", 5),
+        ("6", 6),
+        ("7", 7),
+        ("8", 8),
+        ("9", 9),
+    ]);
 }
 
 fn part_2(input: &str) -> usize {
-    let first = regex::Regex::new(r".*?(\d|zero|one|two|three|four|five|six|seven|eight|nine).*").unwrap();
-    let last = regex::Regex::new(r".*(\d|zero|one|two|three|four|five|six|seven|eight|nine).*?$").unwrap();
+    let first =
+        regex::Regex::new(r".*?(\d|zero|one|two|three|four|five|six|seven|eight|nine).*").unwrap();
+    let last =
+        regex::Regex::new(r".*(\d|zero|one|two|three|four|five|six|seven|eight|nine).*?$").unwrap();
     let mut sum = 0;
-    for line in input.lines(){
+    for line in input.lines() {
         let val1 = first.captures(line).unwrap().get(1).unwrap().as_str();
         let val2 = last.captures(line).unwrap().get(1).unwrap().as_str();
-        sum += MAPPINGS[val1] * 10 + MAPPINGS[val2]; 
+        sum += MAPPINGS[val1] * 10 + MAPPINGS[val2];
     }
     sum
 }
@@ -42,8 +43,24 @@ fn part_1(input: &str) -> usize {
     let first = regex::Regex::new(r".*?(\d).*").unwrap();
     let last = regex::Regex::new(r".*(\d).*?$").unwrap();
     let mut sum = 0;
-    for line in input.lines(){
-        sum += first.captures(line).unwrap().get(1).unwrap().as_str().parse::<usize>().unwrap() * 10 + last.captures(line).unwrap().get(1).unwrap().as_str().parse::<usize>().unwrap(); 
+    for line in input.lines() {
+        sum += first
+            .captures(line)
+            .unwrap()
+            .get(1)
+            .unwrap()
+            .as_str()
+            .parse::<usize>()
+            .unwrap()
+            * 10
+            + last
+                .captures(line)
+                .unwrap()
+                .get(1)
+                .unwrap()
+                .as_str()
+                .parse::<usize>()
+                .unwrap();
     }
     sum
 }
@@ -80,6 +97,6 @@ mod tests {
                     zoneight234
                     7pqrstsixteen";
         let output = part_2(input);
-        assert_eq!(output,281);
+        assert_eq!(output, 281);
     }
 }

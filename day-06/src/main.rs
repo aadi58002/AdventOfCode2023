@@ -1,11 +1,27 @@
 fn part_2(input: &str) -> usize {
-    let mut lines = input.lines().map(|val| val.replace(" ",""));
-    let time = lines.nth(0).unwrap().split(":").skip(1).nth(0).unwrap().parse::<usize>().unwrap();
-    let distance = lines.nth(0).unwrap().split(":").skip(1).nth(0).unwrap().parse::<usize>().unwrap();
-    
+    let mut lines = input.lines().map(|val| val.replace(" ", ""));
+    let time = lines
+        .nth(0)
+        .unwrap()
+        .split(":")
+        .skip(1)
+        .nth(0)
+        .unwrap()
+        .parse::<usize>()
+        .unwrap();
+    let distance = lines
+        .nth(0)
+        .unwrap()
+        .split(":")
+        .skip(1)
+        .nth(0)
+        .unwrap()
+        .parse::<usize>()
+        .unwrap();
+
     let mut answer = 0;
-    for i in 1..time{
-        if i*(time-i) > distance{
+    for i in 1..time {
+        if i * (time - i) > distance {
             answer += 1;
         }
     }
@@ -16,14 +32,24 @@ fn part_2(input: &str) -> usize {
 // search and search till just time/2 in each case)
 fn part_1(input: &str) -> usize {
     let mut lines = input.lines();
-    let time = lines.nth(0).unwrap().split_whitespace().skip(1).map(|val| val.parse::<usize>().unwrap());
-    let distance = lines.nth(0).unwrap().split_whitespace().skip(1).map(|val| val.parse::<usize>().unwrap());
-    
+    let time = lines
+        .nth(0)
+        .unwrap()
+        .split_whitespace()
+        .skip(1)
+        .map(|val| val.parse::<usize>().unwrap());
+    let distance = lines
+        .nth(0)
+        .unwrap()
+        .split_whitespace()
+        .skip(1)
+        .map(|val| val.parse::<usize>().unwrap());
+
     let mut answer = 1;
-    for (time,distance) in time.zip(distance){
+    for (time, distance) in time.zip(distance) {
         let mut counter = 0;
-        for i in 1..time{
-            if i*(time-i) > distance{
+        for i in 1..time {
+            if i * (time - i) > distance {
                 counter += 1;
             }
         }
@@ -56,6 +82,6 @@ Distance:  9  40  200";
         let input = "Time:      7  15   30
 Distance:  9  40  200";
         let output = part_2(input);
-        assert_eq!(output,71503);
+        assert_eq!(output, 71503);
     }
 }

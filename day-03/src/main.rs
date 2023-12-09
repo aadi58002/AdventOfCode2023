@@ -1,5 +1,5 @@
-use lazy_static::lazy_static;
 use itertools::Itertools;
+use lazy_static::lazy_static;
 use regex::Regex;
 
 lazy_static! {
@@ -46,8 +46,8 @@ fn part_2(input: &str) -> usize {
                 .map(|(i, j)| get_number_values(&input, j, i))
                 .unique()
                 .collect();
-                if points.len() == 2{
-                    sum += points[0].1*points[1].1;
+                if points.len() == 2 {
+                    sum += points[0].1 * points[1].1;
                 }
             }
         }

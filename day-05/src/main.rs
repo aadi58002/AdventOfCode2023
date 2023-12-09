@@ -45,7 +45,7 @@ fn part_2(input: &str) -> usize {
 
     let mut answer = usize::MAX;
     for seeds_range in seeds.chunks(2) {
-        for seed in seeds_range[0]..(seeds_range[0]+seeds_range[1]) {
+        for seed in seeds_range[0]..(seeds_range[0] + seeds_range[1]) {
             let mut current = seed;
             for maps in &maps_vector {
                 if let Some(val) = maps

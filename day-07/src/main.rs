@@ -65,12 +65,16 @@ impl Hand {
         // }
 
         // Part2
-        let max_freq = freq.iter().filter(|(k,_)| **k != 'J').max_by_key(|(_, val)| *val).map(|(key,val)| (*key,*val));
-        if freq.get(&'J').is_some() && max_freq.is_some(){
-            let (ch,fq) = max_freq.unwrap();
+        let max_freq = freq
+            .iter()
+            .filter(|(k, _)| **k != 'J')
+            .max_by_key(|(_, val)| *val)
+            .map(|(key, val)| (*key, *val));
+        if freq.get(&'J').is_some() && max_freq.is_some() {
+            let (ch, fq) = max_freq.unwrap();
             let freq_j = *freq.get(&'J').unwrap();
-            *freq.get_mut(&ch).unwrap() += freq_j; 
-            *freq.get_mut(&'J').unwrap() += fq; 
+            *freq.get_mut(&ch).unwrap() += freq_j;
+            *freq.get_mut(&'J').unwrap() += fq;
         }
         for ch in cards.chars() {
             let freq = freq[&ch];
@@ -106,12 +110,12 @@ fn part(input: &str) -> usize {
             _ => return cmp,
         }
     });
-    for hand in hands.iter(){
-        for card in &hand.cards{
+    for hand in hands.iter() {
+        for card in &hand.cards {
             print!("{card:02} ");
         }
         println!();
-        for commons in &hand.commons{
+        for commons in &hand.commons {
             print!("{commons:02} ");
         }
         println!();

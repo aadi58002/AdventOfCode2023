@@ -18,9 +18,9 @@ fn get_number_from_game(value: &str) -> GameResult {
     let games = MAIN.captures(value).unwrap();
     let number = games.get(1).unwrap().as_str().parse::<usize>().unwrap();
     let results = games.get(2).unwrap().as_str();
-    let (mut red,mut green,mut blue) = (0,0,0);
+    let (mut red, mut green, mut blue) = (0, 0, 0);
 
-    for (_,[value,word]) in VALUE.captures_iter(results).map(|c| c.extract()){
+    for (_, [value, word]) in VALUE.captures_iter(results).map(|c| c.extract()) {
         let value = value.parse::<usize>().unwrap();
         match word {
             "red" => red = red.max(value),
@@ -28,7 +28,6 @@ fn get_number_from_game(value: &str) -> GameResult {
             "blue" => blue = blue.max(value),
             _ => panic!("This case should never happen"),
         }
-
     }
 
     GameResult {
@@ -48,7 +47,7 @@ fn part_2(input: &str) -> usize {
     sum
 }
 
-fn part_1(input: &str,limit: GameResult) -> usize {
+fn part_1(input: &str, limit: GameResult) -> usize {
     let mut sum = 0;
     for input in input.lines() {
         let values = get_number_from_game(input);
@@ -84,12 +83,15 @@ mod tests {
                      Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
                      Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
                      Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-        let output = part_1(input,GameResult {
-            number: 0,
-            red: 12,
-            green: 13,
-            blue: 14,
-        });
+        let output = part_1(
+            input,
+            GameResult {
+                number: 0,
+                red: 12,
+                green: 13,
+                blue: 14,
+            },
+        );
         assert_eq!(output, 8);
     }
 
