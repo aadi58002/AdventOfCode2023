@@ -64,7 +64,8 @@ fn part_1(input: &str) -> isize {
 
 fn main() {
     let input = include_str!("./part1-input.txt");
-    // let output = part_1(input);
+    let output = part_1(input);
+    dbg!(output);
     let output = part_2(input);
     dbg!(output);
 }
